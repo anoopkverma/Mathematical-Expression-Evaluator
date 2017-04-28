@@ -21,7 +21,7 @@ def isoperator(c):
 def check_nondigit(st):
     flag=False
     for c in st:
-        if isoperator(c) or (c>='0' and c<='9'):
+        if isoperator(c) or (c>='0' and c<='9') or c=='(' or c==')':
             continue
         else:
             flag=True
