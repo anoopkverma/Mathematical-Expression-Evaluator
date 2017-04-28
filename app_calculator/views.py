@@ -18,6 +18,14 @@ def isoperator(c):
     else:
         return False
 
+def check_nondigit(st):
+    flag=False
+    for c in st:
+        if isoperator(c) or (c>='0' and c<='9'):
+            continue
+        else:
+            flag=True
+    return flag
 
 def tokenizer(st):
     li=[]
@@ -117,6 +125,8 @@ def calculator_page(request):
         exp=remove_space(exp)
         if(exp==""):
             error="You entered a empty expression."
+        elif check_nondigit(exp):
+            error="You have entered some non-digit character."
         else:
             tokens=tokenizer(exp)
             post_fix=convert(tokens)
