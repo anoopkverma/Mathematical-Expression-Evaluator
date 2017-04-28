@@ -4,15 +4,20 @@
   <h3>Enter your maths expression:</h3><hr><br>
   <form class="" action="/app_calculator/" method="post">
     {% csrf_token %}
-    <textarea name="expression" rows="2" cols="40" style="font-size:30px;"></textarea><br><br>
+    <textarea name="expression" rows="2" cols="40" style="font-size:30px;" type="text" value=""></textarea><br><br>
     <div class="">
       <button type="submit" name="Submit" value="submit"style="text-align:center;margin-right:20px;" class="btn btn-primary">Calcluate</button>
 
     </div><hr>
   </form>
   {% if success %}<hr>
-  <h1>Result : </h1><br>
-    <h2>{{expression}} = {{result}}<h2>
+    {% if error %}
+        <h1>Error :</h1>
+        <h2>{{error}}</h2>
+    {% else %}
+       <h1>Result : </h1><br>
+       <h2>{{expression}} = {{result}}<h2>
+    {% endif %}
   {% endif%}
 
 </div>

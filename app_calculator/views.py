@@ -100,15 +100,27 @@ def evaluate(exp):
             st.append(c)
     return st[0]
 
+def remove_space(str):
+    s=""
+    for ch in str:
+        if ch!=' ':
+            s=s+ch
+    return s;
 
 def calculator_page(request):
     success=False
     if request.method=='POST':
         success=True
+        error=""
+        result=0
         exp=request.POST.get('expression')
-        tokens=tokenizer(exp)
-        post_fix=convert(tokens)
-        result=evaluate(post_fix)
-        return render(request,'calculator.html',{'success':success,'expression':exp,'result':result})
+        exp=remove_space(exp)
+        if(exp==""):
+            error="You entered a empty expression."
+        else:
+            tokens=tokenizer(exp)
+            post_fix=convert(tokens)
+            result=evaluate(post_fix)
+        return render(request,'calculator.html',{'success':success,'expression':exp,'result':result,'error':error})
     else:
         return render(request,'calculator.html')
