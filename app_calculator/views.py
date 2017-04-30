@@ -2,6 +2,64 @@ from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponseRedirect
 
 # Create your views here.
+
+
+""" Parser class to check syntax of the expression"""
+
+class Parser:
+    def __init__(self,token,look):
+        self.tokens=token
+        self.look=look
+        self.length=len(self.tokens)
+
+    def check(self):
+        if self.look == len(self.tokens):
+            return "success"
+        else:
+            return "fail"
+
+    def match(self):
+        self.look=self.look+1
+
+    def beginparse(self):
+        self.exp()
+
+    def exp(self):
+        self.term()
+        self._exp()
+
+    def _exp(self):
+        if self.look<self.length and self.tokens[self.look]=='+':
+            self.match()
+            self.term()
+            self._exp()
+        else:
+            return
+
+    def term(self):
+        self.factor()
+        self._term()
+
+    def _term(self):
+        if self.look<self.length and self.tokens[self.look]=='*':
+            self.match()
+            self.factor()
+            self._term()
+        else:
+            return
+
+    def factor(self):
+        if self.look<self.length and self.tokens[self.look]=='(':
+            self.match()
+            self.exp()
+            if self.look<self.length and self.tokens[self.look]==')':
+                self.match()
+        else:
+            self.match()
+
+"""End of Parser class"""
+
+
 def isnumber(id):
     flag=True
     chars=id.split()
@@ -123,12 +181,17 @@ def calculator_page(request):
         result=0
         exp=request.POST.get('expression')
         exp=remove_space(exp)
+        tokens=tokenizer(exp)
+        parser=Parser(tokens,0)
+        parser.beginparse()
+        parser_result=parser.check()
         if(exp==""):
             error="You entered a empty expression."
         elif check_nondigit(exp):
             error="You have entered some non-digit character."
+        elif parser_result=="fail":
+            error="Syntax Error!!"
         else:
-            tokens=tokenizer(exp)
             post_fix=convert(tokens)
             result=evaluate(post_fix)
         return render(request,'calculator.html',{'success':success,'expression':exp,'result':result,'error':error})
