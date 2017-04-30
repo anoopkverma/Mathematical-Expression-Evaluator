@@ -29,7 +29,7 @@ class Parser:
         self._exp()
 
     def _exp(self):
-        if self.look<self.length and self.tokens[self.look]=='+':
+        if self.look<self.length and (self.tokens[self.look]=='+' or self.tokens[self.look]=='-'):
             self.match()
             self.term()
             self._exp()
@@ -41,7 +41,7 @@ class Parser:
         self._term()
 
     def _term(self):
-        if self.look<self.length and self.tokens[self.look]=='*':
+        if self.look<self.length and (self.tokens[self.look]=='*' or self.tokens[self.look]=='/'):
             self.match()
             self.factor()
             self._term()
