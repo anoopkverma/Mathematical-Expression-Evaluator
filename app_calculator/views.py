@@ -131,7 +131,7 @@ def convert(e):
                     post_exp.append(op_stack.pop())
         else:
             if op_stack:
-                while not op_stack and prec[op_stack[-1]]<= prec[token]:
+                while op_stack and op_stack[-1]!='(' and prec[op_stack[-1]]>=prec[token]:
                     post_exp.append(op_stack.pop())
             op_stack.append(token)
         i=i+1
@@ -188,7 +188,7 @@ def calculator_page(request):
         if(exp==""):
             error="You entered a empty expression."
         elif check_nondigit(exp):
-            error="You have entered some non-digit character."
+            error="You have entered some invalid characters."
         elif parser_result=="fail":
             error="Syntax Error!!"
         else:
