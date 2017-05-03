@@ -4,7 +4,7 @@
   <h1>Enter your maths expression:</h1><hr>
   <form class="" action="/app_calculator/" method="post">
     {% csrf_token %}
-    <textarea name="expression" rows="2" cols="40" style="font-size:30px;" type="text" value=""></textarea><br>
+    <input name="expression" rows="2" cols="40" style="font-size:30px;" type="text" value=""><br><br>
     <div class="">
       <button type="submit" name="Submit" value="submit"style="text-align:center;margin-right:20px;" class="btn btn-primary">Calcluate</button>
 

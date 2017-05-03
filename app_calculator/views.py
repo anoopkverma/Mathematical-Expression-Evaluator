@@ -54,6 +54,8 @@ class Parser:
             self.exp()
             if self.look<self.length and self.tokens[self.look]==')':
                 self.match()
+            else:
+                self.look=100000000
         else:
             self.match()
 
