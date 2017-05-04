@@ -1,12 +1,21 @@
 {% extends 'base.html'%}
 {% block content%}
-<div class="" style="text-align:center;">
+<div class="col-md-2">
+
+</div>
+<div class="col-sm-8" style="text-align:center;">
   <h1>Enter your maths expression:</h1><hr>
   <form class="" action="/app_calculator/" method="post">
     {% csrf_token %}
-    <input name="expression" rows="2" cols="40" style="font-size:30px;" type="text" value=""><br><br>
+    <div class="col-md-">
+    <input name="expression" class="form-control" style="font-size:30px;padding:1em;" type="text" value="">
+  </div>
+    <br>
     <div class="">
-      <button type="submit" name="Submit" value="submit"style="text-align:center;margin-right:20px;" class="btn btn-primary">Calcluate</button>
+      <button type="submit" name="Submit" value="submit"style="text-align:center;margin-right:20px;" class="btn btn-primary">Calculate</button>
+
+    </div>
+    <div class="col-md-2">
 
     </div>
   </form>
@@ -19,6 +28,7 @@
        <h2>Result : </h2>
        <h3>{{expression}} = {{result}}<h3>
     {% endif %}
+    <hr>
   {% endif%}
 
 </div>
