@@ -34,6 +34,11 @@ video {
   display: inline-block;
   vertical-align: baseline;
 }
+
+.form-control{
+    height: auto;
+}
+
 audio:not([controls]) {
   display: none;
   height: 0;
