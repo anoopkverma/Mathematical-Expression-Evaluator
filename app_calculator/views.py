@@ -65,7 +65,10 @@ class Parser:
 def isnumber(id):
     flag=True
     chars=id.split()
-    for c in chars:
+    i=0
+    while i<len(id):
+        c=id[i]
+        i=i+1
         if c<'0' or c>'9':
             flag=False
             return flag
