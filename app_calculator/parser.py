@@ -34,7 +34,7 @@ T => F T'
 T' => * F T'
 T' => / F T'
 T' => null
-F → digits | (non-digits)
+F => digits | (non-digits)
 
 The names used in following parser corresponding to above symbols,
 
