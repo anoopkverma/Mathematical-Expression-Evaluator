@@ -12,8 +12,8 @@ Expression grammar used:
 S => E
 E => T | E + T | E - T
 T => F | T * F | T / F
-F => 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | (a-z) | (A-Z)
-[ S, E, T, and F are nonterminal symbols, and (a-z)|(A-Z), and the digits 0-9
+F => digits | non-digits
+[ S, E, T, and F are nonterminal symbols, and digits (0-9) and non-digits
  are terminal symbols.
  S = Statement
  E = Expression
@@ -44,7 +44,7 @@ T = term
 T' = _term
 F = factor
 
-The above grammer is implemented in following parser.
+The above grammer is implemented in following Parser class.
 
 """
 
