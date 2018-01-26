@@ -1,35 +1,34 @@
 {% extends 'base.html'%}
 {% block content%}
-<div class="col-md-2">
+  <div class="col-md-2">
 
-</div>
-<div class="col-sm-8" style="text-align:center;">
-  <h1>Enter your maths expression:</h1><hr>
-  <form class="" action="/app_calculator/" method="post">
-    {% csrf_token %}
-    <div class="col-md-">
-    <input name="expression" class="form-control input-lg" style="" type="text" value="">
   </div>
-    <br>
-    <div class="">
-      <button type="submit" name="Submit" value="submit"style="text-align:center;margin-right:20px;" class="btn btn-primary">Calculate</button>
-
-    </div>
-    <div class="col-md-2">
-
-    </div>
-  </form>
-  {% if success %}<hr>
-    {% if error %}
-        <h2>Error :</h2>
-        <h3>{{error}}</h3>
-        <h3>Try Again!!</h3>
-    {% else %}
-       <h2>Result : </h2>
-       <h3>{{expression}} = {{result}}<h3>
-    {% endif %}
-    <hr>
-  {% endif%}
-
-</div>
+  <div class="col-sm-8" style="text-align:center;">
+    <h1>Enter your maths expression:</h1><hr>
+    <form class="" action="" method="post">
+      {% csrf_token %}
+      <div class="col-md-">
+        <input name="expression" class="form-control input-lg" style=""
+          type="text" value="">
+      </div><br>
+      <div class="">
+        <button type="submit" name="Submit" value="submit"
+          style="text-align:center;margin-right:20px;"
+          class="btn btn-primary">Calculate</button>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </form>
+    {% if success %}<hr>
+      {% if error %}
+          <h2>Error :</h2>
+          <h3>{{error}}</h3>
+          <h3>Try Again!!</h3>
+      {% else %}
+         <h2>Result : </h2>
+         <h3>{{expression}} = {{result}}<h3>
+      {% endif %}
+      <hr>
+    {% endif%}
+  </div>
 {% endblock%}
